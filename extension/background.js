@@ -6,9 +6,9 @@ chrome.runtime.onInstalled.addListener(() => {
   
 });
 
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-  if (tab.url.startsWith('https://leetcode.com/')) {
-    //TODO: Add webscraping here
-      console.info("LEETCODE reached!")
-  }
+chrome.tabs.onActivated.addListener(function(activeInfo) {
+  chrome.tabs.get(activeInfo.tabId, function(tab){ 
+    console.log(tab.url)
+  }); 
+  
 });
