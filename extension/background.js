@@ -1,19 +1,14 @@
-// background.js
+let color = '#3aa757';
 
-
-changeColor.addEventListener("click", async () => {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+chrome.runtime.onInstalled.addListener(() => {
+  //chrome.storage.sync.set({ color });
+  //console.log('Default background color set to %cgreen', `color: ${color}`);
   
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      function: getURL,
-    });
-  });
+});
 
-  function getURL() {
-    chrome.tabs.query({active: true, currentWindow: true}, tabs => {
-        let url = tabs[0].url;
-        // use `url` here inside the callback because it's asynchronous!
-        alert("this is url: ",url);
-    });
-}
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+  if (tab.url.startsWith('https://leetcode.com/')) {
+    //TODO: Add webscraping here
+      console.info("LEETCODE reached!")
+  }
+});
