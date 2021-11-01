@@ -6,7 +6,23 @@
     "background": {
       "service_worker": "background.js"
     },
-    "permissions": ["storage","tabs","activeTab", "scripting"],
+    "permissions": [
+      "storage",
+      "tabs",
+      "activeTab", 
+      "scripting",
+      "notifications"
+    ],
+    "host_permissions": [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["http://*.nytimes.com/*"],
+        "js": ["leetcode-content-script.js"]
+      }
+    ],
     "action": {
         "default_popup": "popup.html"
       }

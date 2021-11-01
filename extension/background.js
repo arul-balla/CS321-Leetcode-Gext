@@ -8,7 +8,20 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
   chrome.tabs.get(activeInfo.tabId, function(tab){ 
-    console.log(tab.url)
+    if (tab.url.startsWith('https://leetcode.com/')) {
+      //TODO: Add webscraping here
+      console.log("You're on Leetcode!");
+      chrome.scripting.executeScript({
+        target: {tabId: activeInfo.tabId, allFrames: true},
+        files: ['leetcode-content-script.js'],
+      });
+    }
+    else{
+      chrome.scripting.executeScript({
+        target: {tabId: activeInfo.tabId, allFrames: true},
+        files: ['notLC.js'],
+      });
+    }
   }); 
   
 });
