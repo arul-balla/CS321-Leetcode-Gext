@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <!-- TODO: Add html input fields for username + password-->
-  <head>
-    <link rel="stylesheet" href="button.css">
-  </head>
-  <body>
-    <button id="changeColor"></button>
-    <script src="popup.js"></script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>LeetCode Extension</title>
+  <style media="screen">
+    body {
+      min-width: 160px;
+    }
+  </style>
+</head>
+
+<body>
+  <div align="right">
+    <span id="saveStatus"></span>
+    <img id="logo" src = /icon/icon16.png />
+  </div>
+  <div id="loginDiv" align="left">
+    <h2>Log in</h2>
+    
+    <span id="login_username">Username:  </span>
+    <input id="username" type="text">
+    <span id="login_password">Password:  </span>
+    <input id="password" type="password">
+    <br><br>
+
+    <span id="progress">Check if complete: </span>
+    <input id="progressStatus" type="checkbox">
+    <br><br>
+
+    <button id="saveButton">Log in</button>
+
+    <br><br>
+  </div>
+  <div id="detailsDiv" align = "left" style="display: none;">
+    <span id = "pID">Problem ID: </span><br>
+    <span id = "pName">Problem Name: </span><br>
+    <span id = "pTopics">Problem Topics: </span><br>
+    <span id = "pTime">Time Spent: </span><br>
+    <span id = "pStatus">Status: </span><br>
+  </div>
+  <script src="popup.js"></script>
+</body>
 </html>
