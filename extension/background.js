@@ -7,13 +7,11 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.tabs.onActivated.addListener(function(activeInfo) {
   chrome.tabs.get(activeInfo.tabId, function(tab){ 
     if (tab.url.startsWith('https://leetcode.com/')) {
-      //TODO: Add webscraping here
-      console.log("You're on Leetcode!");
       chrome.scripting.executeScript({
-        target: {tabId: activeInfo.tabId, allFrames: true},
-        files: ['leetcode-content-script.js'],
+          target: {tabId: activeInfo.tabId, allFrames: true},
+          files: ['timer-script.js'],
       });
-      console.log(token);
+      //console.log(token);
     }
     //TODO: CHANGE TAB URL TO actual domain of website
     else if (tab.url === 'http://localhost:3000/'){
