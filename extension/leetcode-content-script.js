@@ -1,5 +1,3 @@
-alert("you're in Leetcode!")
-
 /* Sends problem details to the popup
  *    id represents the problem id
  *    name represents the problem name
