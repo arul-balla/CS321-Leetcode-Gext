@@ -1,5 +1,6 @@
 let username = document.getElementById('username');
 let password = document.getElementById('password');
+let loginButton = document.getElementById('loginButton');
 
 let pID = document.getElementById('pID');
 let pName = document.getElementById('pName');
@@ -7,18 +8,25 @@ let pTopics = document.getElementById('pTopics');
 let pTime = document.getElementById('pTime');
 let pStatus = document.getElementById('pStatus');
 
-let saveButton = document.getElementById('saveButton');
+let progressStatus = document.getElementById('progressStatus');
+let progress = document.getElementById('progress');
+
 let logo = document.getElementById('logo');
+let saveButton = document.getElementById('saveButton');
+let saveButtoSection = document.getElementById('saveButtonSection');
 let saveStatus = document.getElementById('saveStatus');
 
 let loginDiv = document.getElementById('loginDiv');
 let detailsDiv = document.getElementById('detailsDiv');
 
-/* Save button click listener.
+var details = [];
+
+/* Login button click listener.
  *    Validates user login info
  *    Displays the problem content and user performance in the popup
  *    Sends the data off to be associated with the user */
-saveButton.onclick = function() {
+loginButton.onclick = function() {
+  console.log("login");
   
   // If the login credentials are valid, extract the problem details
   if(checkLogin(username.value, password.value)){
@@ -56,23 +64,32 @@ saveButton.onclick = function() {
           pID.textContent = "Problem ID: " + response.id;
           pName.textContent = "Problem Name: " + response.name;
           pTopics.textContent = "Problem Topics: " + response.topics;
-          pTopics.textContent = pTopics.textContent.replace(",", ", ");
+          pTopics.textContent = pTopics.textContent.replaceAll(",", ", ");
 
-          logo.src = "/icon/checkmark16.png";
-          saveStatus.textContent = "Saved!  ";
           getData(response, status);
         }
         else{
-          alert('Error retrieving problem details--Make sure you are on a leetcode problem (leetcode.com/problems/...) \n\nRefresh the page and try again if the issue persists');
+          alert('Error retrieving your progress--Make sure you are on a leetcode problem (leetcode.com/problems/...) \n\nRefresh the page and try again if the issue persists');
         }
       })
     });
-
   }
   // Else if the login credentials are not valid, inform the user
   else{
-    alert('Invalid credentials. Double check username and password combination');
+    alert('Invalid credentials--Please double check username and password combination');
   }
+}
+
+/* Save button click listener.
+ *    Indicates that data has been saved */
+saveButton.onclick = function() {
+
+  logo.src = "/icon/checkmark16.png";
+  saveStatus.textContent = "Saved!  ";
+  progress.style = "display: none;";
+  progressStatus.style = "display: none;";
+  saveBtnSection.style = "display: none;";
+  sendData();
 }
 
 // TODO: Checks if user info is valid
@@ -95,5 +112,9 @@ function getData(response, isComplete){
     time: parseInt(pTime.textContent.substr(22, pTime.textContent.length)),
     status: isComplete,
   };
-  console.log('Problem Details', data);
+  details = data;
+}
+
+function sendData(){
+  console.log('Problem Details', details);
 }
