@@ -31,5 +31,14 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
       });
     }
   }); 
+});
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   
+  if (changeInfo.url && tab.url.startsWith('https://leetcode.com/problems/')) {
+    // Sets the start of the timer as the current time
+    chrome.storage.sync.set({'timerStart': Date.now()}, function() {
+      console.log('start of timer: ' + Date.now())
+    });
+  }
 });
