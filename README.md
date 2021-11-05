@@ -21,3 +21,7 @@ creating the google extension portion of the leetcode project
 - popup for the extension was added 
 - content script for the extension can now read problem details of the problem the user is on
 - Next steps would be to adjust the timer so it accurately reflects the time the user spends on a problem.
+
+11/05/2021:
+
+- updated popup to be more intuitive
