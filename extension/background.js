@@ -7,9 +7,8 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.tabs.onActivated.addListener(function(activeInfo) {
   chrome.tabs.get(activeInfo.tabId, function(tab){ 
     if (tab.url.startsWith('https://leetcode.com/')) {
-      chrome.scripting.executeScript({
-          target: {tabId: activeInfo.tabId, allFrames: true},
-          files: ['timer-script.js'],
+      chrome.storage.sync.set({'timerStart': Date.now()}, function() {
+        console.log('tab was switched to LC, timer start: ' + Date.now())
       });
       //console.log(token);
     }
@@ -38,7 +37,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   if (changeInfo.url && tab.url.startsWith('https://leetcode.com/problems/')) {
     // Sets the start of the timer as the current time
     chrome.storage.sync.set({'timerStart': Date.now()}, function() {
-      console.log('start of timer: ' + Date.now())
+      console.log('url was switched to LC, timer start: ' + Date.now())
     });
   }
 });
