@@ -44,7 +44,7 @@ function getRelatedTopics(){
   var list = [];
   var str = "";
   for(var i = 0; i < topics.length; i++){
-    if(i != 0 && topics.charAt(i) != '-' && topics.charAt(i-1) != '-' && topics.charAt(i-1) != " " && topics.charAt(i) != ' ' && topics.charAt(i) == topics.charAt(i).toUpperCase()){
+    if(i != 0 && topics.charAt(i) != '-' && topics.charAt(i-1) != '-' && topics.charAt(i) != ' ' && topics.charAt(i-1) != ' ' && topics.charAt(i) != '(' && topics.charAt(i-1) != '(' && topics.charAt(i) != ')' && topics.charAt(i) == topics.charAt(i).toUpperCase()){
       list.push(str);
       str = "";
       str +=  topics.charAt(i);
