@@ -13,7 +13,7 @@ let progress = document.getElementById('progress');
 
 let logo = document.getElementById('logo');
 let saveButton = document.getElementById('saveButton');
-let saveButtoSection = document.getElementById('saveButtonSection');
+let saveBtnSection = document.getElementById('saveBtnSection');
 let saveStatus = document.getElementById('saveStatus');
 
 let loginDiv = document.getElementById('loginDiv');
@@ -24,9 +24,8 @@ var details = [];
 /* Login button click listener.
  *    Validates user login info
  *    Displays the problem content and user performance in the popup
- *    Sends the data off to be associated with the user */
+ *    Obtain the problem details */
 loginButton.onclick = function() {
-  console.log("login");
   
   // If the login credentials are valid, extract the problem details
   if(checkLogin(username.value, password.value)){
@@ -81,7 +80,8 @@ loginButton.onclick = function() {
 }
 
 /* Save button click listener.
- *    Indicates that data has been saved */
+ *    Indicates that data has been saved 
+ *    Sends the data off to be associated with the user */
 saveButton.onclick = function() {
 
   logo.src = "/icon/checkmark16.png";
@@ -102,7 +102,7 @@ function checkLogin(username, password) {
   return false;
 }
 
-// TODO: Send data off
+/* Obtains the user's progress on the problem. */
 function getData(response, isComplete){
   var data = {
     id: response.id,
@@ -115,6 +115,7 @@ function getData(response, isComplete){
   details = data;
 }
 
+// TODO: Send data off
 function sendData(){
   console.log('Problem Details', details);
 }
