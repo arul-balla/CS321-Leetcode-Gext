@@ -33,8 +33,6 @@ function getProblemName(){
 
 /* Obtains the problem topics */
 function getRelatedTopics(){
-  var b = document.querySelector("#app > div > div.main__2_tD > div.content__3fR6 > div > div.side-tools-wrapper__1TS9 > div > div.css-1gd46d6-Container.e5i1odf0 > div.css-jtoecv > div > div.tab-pane__ncJk.css-1eusa4c-TabContent.e5i1odf5 > div > div:nth-child(6) > div.css-blecvm.e5i1odf0")
-    b.click();
   var tags = document.querySelectorAll(".tag__24Rd");
   var topics = "";
   for(var i = 0; i < tags.length; i++){
