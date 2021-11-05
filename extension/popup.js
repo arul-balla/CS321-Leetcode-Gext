@@ -17,6 +17,8 @@ let saveStatus = document.getElementById('saveStatus');
 let viewDiv = document.getElementById('viewDiv');
 let saveDiv = document.getElementById('saveDiv');
 
+const url = 'https://us-central1-leetcode-90738.cloudfunctions.net/api/problem';
+
 var details = [];
 
 /* View button click listener.
@@ -97,4 +99,27 @@ function getData(response, isComplete){
 // TODO: Send data off after save button has been clicked
 function sendData(){
   console.log('Problem Details', details);
+  chrome.storage.sync.get(['FBIdToken'], function(result) {
+    console.log(result.FBIdToken);
+    const options = {
+      method: 'POST',
+      headers: {
+        'Authorization': result.FBIdToken,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
+      body: JSON.stringify({
+        category: details.topics,
+        time: details.time,
+        title: details.name
+      })
+    };
+
+    console.log(options)
+
+    fetch(url, options)
+      .then(response => {
+        console.log(response);
+      }).catch(err => console.log(err));
+    });
 }

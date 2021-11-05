@@ -24,10 +24,6 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
         target: {tabId: activeInfo.tabId, allFrames: true},
         files: ['notLC.js'],
       });
-      //Access and save token for adding and storing LC data
-      chrome.storage.sync.get(['FBIdToken'], function(result) {
-        console.log(result.FBIdToken);
-      });
     }
   }); 
 });
