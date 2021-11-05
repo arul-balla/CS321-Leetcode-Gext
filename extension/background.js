@@ -6,7 +6,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
   chrome.tabs.get(activeInfo.tabId, function(tab){ 
-    if (tab.url.startsWith('https://leetcode.com/')) {
+    if (tab.url.startsWith('https://leetcode.com/problems/')) {
       chrome.storage.sync.set({'timerStart': Date.now()}, function() {
         console.log('tab was switched to LC, timer start: ' + Date.now())
       });
