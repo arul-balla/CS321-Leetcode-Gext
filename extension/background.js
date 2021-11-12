@@ -12,6 +12,9 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
       });
       //console.log(token);
     }
+    else if (tab.url.startsWith('https://leetcode.com/')) {
+      console.log('user is on LeetCode')
+    }
     //TODO: CHANGE TAB URL TO actual domain of website
     else if (tab.url === 'http://localhost:3000/'){
       chrome.scripting.executeScript({
